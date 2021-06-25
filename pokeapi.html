@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 ">
+   
+   <header class="text-gray-600 body-font">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
+      <a class="mr-5 hover:text-gray-900"></a>
+      <a class="mr-5 hover:text-gray-900"></a>
+      <a class="mr-5 hover:text-gray-900"></a>
+      <a class="hover:text-gray-900"></a>
+    </nav>
+    <a class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10  p-2 bg-red-500 rounded-full" viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+      </svg>
+      <span class="ml-3 text-xl">Poke API</span>
+    </a>
+    <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+    <a href="https://github.com/swapnilphalke97">
+      <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">My Github Link
+   </a>
+      </button>
+      
+      
+       
+       
+    </div>
+  </div>
+  </div> 
+</header>
+
+
+
+
+
+
+
+
+
+
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap -mx-4 -mb-10 text-center">
+      <div class="sm:w-1/2 mb-10 px-4">
+      <div class="results">
+       <img id="img">
+  <div id="dog_result" class="result">
+        <h2 class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">Random Poke Placeholder</h2>
+        </div><button id="dog_btn" class="flex mx-auto mt-6 text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded">Get PokeMon</button>
+      <div class="flex flex-col text-center w-full mb-20 text-2xl font-bold ">
+         <div class="numberfact">Get Your PokeMon</div>
+      </div> 
+      </div> </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<script>
+let img = document.getElementById('img');
+const dog_btn = document.getElementById('dog_btn');
+const dog_result = document.getElementById('dog_result');
+const factDiv = document.querySelector('.numberfact');
+dog_btn.addEventListener('click', verPokemon);
+
+
+
+ function verPokemon(){
+ const numero=Math.floor(Math.random() * 150);
+
+    fetch(`https://pokeapi.co/api/v2/pokemon/${numero}/`)
+        .then(response => response.json())
+        .then(pokemon => {
+            let imagen = pokemon.sprites.front_default;
+            let nombre = pokemon.name;
+            let base_experience = pokemon.base_experience;
+            let height = pokemon.height;
+            let order = pokemon.order;
+            let weight = pokemon.weight;
+            let location_area_encounters = pokemon.location_area_encounters;
+            let abilities = pokemon.abilities.slot;
+            
+            
+            
+            
+            
+            
+            
+            
+        
+           dog_result.innerHTML = `<img src=${imagen} width="200" height="121" alt="Poke" alt="dog" />`; 
+           factDiv.innerHTML="<h1>Name is "+nombre+"</h1><h1>base_experience is "+base_experience+"</h1><br><h1>height is "+height+"</h1> <h1>order is "+order+"</h1><h1>weight is "+weight+"</h1> "
+            
+     });
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
