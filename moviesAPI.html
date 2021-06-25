@@ -46,6 +46,7 @@
 <input onkeyup="getanswer(document.getElementById('qurybox').value)" id="qurybox" placeholder="Enter a Movie" class=" bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"> <div id="answer"></div> <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>      
 <div class="flex flex-col text-center w-full mb-20 text-2xl font-bold ">
       <div class="numberfact">Give a Movie and i will give you little info about movie. 😎.</div>
+   
     </div>
   </div>
 
@@ -55,15 +56,32 @@
 
 <script> var data;
 function getanswer(q){
-$.get("https://www.omdbapi.com/?s="+q+"&apikey=ba1f4581", function(rawdata){
+$.get("https://www.omdbapi.com/?t="+q+"&apikey=ba1f4581", function(rawdata){
 var rawstring =JSON.stringify(rawdata);
 data =JSON.parse(rawstring);
-var title = data.Search[0].Title;
-var year = data.Search[0].Year; 
-var imdburl="https://www.imdb.com/title/"+data.Search[0].imdbID+"/";
+var title = data.Title;
+var year = data.Year; 
+var imdburl="https://www.imdb.com/title/"+data.imdbID+"/";
 const factDiv = document.querySelector('.numberfact');
-var posterurl =data.Search[0].Poster;
-factDiv.innerHTML = "<h1>"+title+"</h1><br> <img src= '"+posterurl+"'><br><p> Year Released:"+year+"</p> <br> <p> IMDB page: <a href='"+imdburl+"'target='_blank'>"+imdburl+"</a></p>"; }); }</script>;
+
+var posterurl =data.Poster;
+ 
+var Released =data.Released;
+var Runtime =data.Runtime;
+var Genre =data.Genre;
+var Director =data.Director;
+var Writer =data.Writer;
+var Actors =data.Actors;
+var Plot =data.Plot;
+var Language =data.Language;
+var Metascore =data.Metascore;
+var imdbRating =data.imdbRating;
+var imdbVotes =data.imdbVotes;
+
+
+ 
+ 
+factDiv.innerHTML = "<h1>Title: "+title+"</h1><br> <img src= '"+posterurl+"'><br><p> Year Released:"+year+"</p> <br> <p> IMDB page: <a href='"+imdburl+"'target='_blank'>"+imdburl+"</a></p><h1>Released Date:"+Released+"</h1><br><h1>Runtime : "+Runtime+"</h1><br><h1>Genre: "+Genre+"</h1><br> <h1>Director: "+Director+"</h1><br> <h1>Writer: "+Writer+"</h1><br> <h1>Actors "+Actors+"</h1><br> <h1>Plot "+Plot+"</h1><br><h1>Language "+Language+"</h1><br> </h1><br> <h1>Metascore "+Metascore+"</h1><br></h1><br> <h1>imdbRating"+imdbRating+"</h1><br></h1><br> <h1>imdbVotes"+imdbVotes+"</h1><br>"; }); }</script>;
 
 
 </section>
